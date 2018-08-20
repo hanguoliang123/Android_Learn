@@ -16,7 +16,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this,TheAty.class);
-                i.putExtra("data","Hello sdssgl.");
+                //i.putExtra("data","Hello sdssgl.");
+                //传递数据包
+                Bundle b = new Bundle();
+                b.putString("name","sdssgl---bundle.");
+                b.putInt("age",2);
+                b.putString("name1","sdssgl-name1.");
+
+
+                i.putExtras(b);
                 startActivity(i);
             }
         });
