@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
                 b.putInt("age",2);
                 b.putString("name1","sdssgl-name1.");
 
-
-                i.putExtras(b);
+                i.putExtra("data",b);
+                //i.putExtras(b);
                 startActivity(i);
             }
         });

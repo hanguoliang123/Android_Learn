@@ -16,7 +16,8 @@ public class TheAty extends AppCompatActivity {
         setContentView(R.layout.activity_the_aty);
 
         Intent i = getIntent();
-        Bundle data = i.getExtras();
+        //Bundle data = i.getExtras();
+        Bundle data = i.getBundleExtra("data");
 
         tv = (TextView) findViewById(R.id.tv);
         //tv.setText(i.getStringExtra("data"));
