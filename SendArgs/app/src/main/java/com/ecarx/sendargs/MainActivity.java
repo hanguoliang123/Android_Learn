@@ -18,13 +18,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this,TheAty.class);
                 //i.putExtra("data","Hello sdssgl.");
                 //传递数据包
-                Bundle b = new Bundle();
-                b.putString("name","sdssgl---bundle.");
-                b.putInt("age",2);
-                b.putString("name1","sdssgl-name1.");
-
-                i.putExtra("data",b);
+//                Bundle b = new Bundle();
+//                b.putString("name","sdssgl---bundle.");
+//                b.putInt("age",2);
+//                b.putString("name1","sdssgl-name1.");
+//
+//                i.putExtra("data",b);
                 //i.putExtras(b);
+
+                i.putExtra("user",new User("sdssgl",25));
+
                 startActivity(i);
             }
         });
