@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import java.net.Inet4Address;
 
 public class TheAty extends AppCompatActivity {
 
     private TextView tv;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,7 @@ public class TheAty extends AppCompatActivity {
         setContentView(R.layout.activity_the_aty);
 
         tv = (TextView) findViewById(R.id.tv);
+        editText = (EditText) findViewById(R.id.editText);
 
         Intent i = getIntent();
         //Bundle data = i.getExtras();
@@ -27,5 +33,15 @@ public class TheAty extends AppCompatActivity {
             //User user = (User) i.getSerializableExtra("user");
             User user = (User) i.getParcelableExtra("user");
             tv.setText(String.format("User info(name=%s,age=%d)",user.getName(),user.getAge()));
+
+            findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent();
+                    i.putExtra("data",editText.getText().toString());
+                    setResult(1,i);
+                    finish();
+                }
+            });
     }
 }
