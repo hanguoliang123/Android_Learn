@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnStartMyAty).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent("com.ecarx.learnintent.intent.action.MyAty"));   //显式Intent,直接指明了被启动的类的定义
+                startActivity(new Intent(MyAty.ACTION));   //显式Intent,直接指明了被启动的类的定义
                                                             //隐式Intent,<intent-filter>中指定
             }
         });
