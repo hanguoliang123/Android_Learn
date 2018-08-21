@@ -9,6 +9,8 @@ import android.os.Bundle;
  */
 public class MyAty extends Activity{
 
+    public static final String ACTION = "com.ecarx.learnintent.intent.action.MyAty";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
