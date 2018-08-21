@@ -6,29 +6,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class BAty extends AppCompatActivity {
 
     private TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_baty);
 
-        tv = (TextView) findViewById(R.id.tv);
+        tv = (TextView)findViewById(R.id.tv);
         tv.setText(String.format("TaskID:%d\nCurrent ActivityId %s",getTaskId(),toString()));
 
         findViewById(R.id.btnMainAty).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MainActivity.class));
+                startActivity(new Intent(BAty.this,MainActivity.class));
             }
         });
 
         findViewById(R.id.btnStartBAty).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,BAty.class));
+                startActivity(new Intent(BAty.this,BAty.class));
             }
         });
+
     }
 }
