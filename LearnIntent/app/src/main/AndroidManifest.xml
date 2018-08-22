@@ -15,11 +15,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MyAty"
+            android:label="MyAty">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
 
-        <activity android:name=".MyAty">
+                <action android:name="com.ecarx.learnintent.intent.action.MyAty" />
+                <data android:scheme="app"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".MyAty1"
+            android:label="@string/title_activity_my_aty1">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <action android:name="com.ecarx.learnintent.intent.action.MyAty"/>
+                <data android:scheme="app1"/>
             </intent-filter>
         </activity>
     </application>
