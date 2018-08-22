@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.sql.SQLOutput;
+
 public class MainActivity extends AppCompatActivity {
 
 //    private TextView tv;
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        System.out.println("MainActivity onCreate.");
 
 //        tv = new TextView(MainActivity.this);
         //tv.setText("Hello Android.");

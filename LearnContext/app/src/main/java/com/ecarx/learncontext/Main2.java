@@ -21,6 +21,8 @@ public class Main2 extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        System.out.println("Main2 onCreate.");
+
         setContentView(R.layout.main2);
 
 
