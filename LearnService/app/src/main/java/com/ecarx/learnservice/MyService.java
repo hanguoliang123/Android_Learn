@@ -8,6 +8,9 @@ import android.os.IBinder;
 import java.sql.SQLOutput;
 
 public class MyService extends Service {
+
+    private boolean serviceRunning = false;
+
     public MyService() {
     }
 
@@ -19,22 +22,7 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-//
-//        new Thread(){
-//            @Override
-//            public void run() {
-//                super.run();
-//                while (true) {
-//                    System.out.println("服务正在运行...");
-//                    try {
-//                        sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }.start();
-//
+        System.out.println("onStartCommand.");
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -42,11 +30,29 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         System.out.println("Service Create");
+        serviceRunning = true;
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                while(serviceRunning) {
+                    System.out.println("服务正在运行...");
+                    try {
+                        sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }.start();
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         System.out.println("Service Destroy");
+        serviceRunning = false;
     }
 }
