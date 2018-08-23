@@ -13,7 +13,14 @@ import android.view.ViewGroup;
 public class AnotherFragment extends Fragment{
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        System.out.println("onCreate.");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
+        System.out.println("onCreateView.");
         View rootView = inflater.inflate(R.layout.fragment_another,container,false);
 
 //        rootView.findViewById(R.id.btnShowAnotherFragment).setOnClickListener(new View.OnClickListener() {
@@ -31,5 +38,17 @@ public class AnotherFragment extends Fragment{
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("onPause.");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy.");
     }
 }

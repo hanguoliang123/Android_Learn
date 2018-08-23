@@ -30,4 +30,22 @@ public class PlaceholderFragment extends Fragment {
         });
         return rootView;
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("a onPause.");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        System.out.println("a onDestroyView.");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        System.out.println("a onDestroy.");
+    }
 }
