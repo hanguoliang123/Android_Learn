@@ -28,5 +28,18 @@
         android:text="停止服务"
         android:id="@+id/btnStopService"
         android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="绑定服务"
+        android:id="@+id/btnBindService"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="解除绑定服务"
+        android:id="@+id/btnUnBindService"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
