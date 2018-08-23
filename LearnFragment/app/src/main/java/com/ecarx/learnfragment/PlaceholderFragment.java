@@ -1,5 +1,6 @@
 package com.ecarx.learnfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,14 @@ public class PlaceholderFragment extends Fragment {
                         .commit();
             }
         });
+
+        rootView.findViewById(R.id.btnStartSliderActivity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),SliderActivity.class));
+            }
+        });
+
         return rootView;
     }
 
