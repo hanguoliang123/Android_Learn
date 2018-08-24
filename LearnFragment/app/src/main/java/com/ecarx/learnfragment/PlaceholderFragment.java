@@ -37,6 +37,13 @@ public class PlaceholderFragment extends Fragment {
             }
         });
 
+        rootView.findViewById(R.id.btnStartTabbedActivity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),Tabs.class));
+            }
+        });
+
         return rootView;
     }
 

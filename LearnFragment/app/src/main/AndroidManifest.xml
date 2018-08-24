@@ -18,6 +18,10 @@
         <activity
             android:name=".SliderActivity"
             android:label="@string/title_activity_slider"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Tabs"
+            android:label="@string/title_activity_tabs"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
