@@ -1,1 +1,7 @@
 This is just for test.
+
+
+SlidingMenu开源库地址:
+https://github.com/jfeinstein10/SlidingMenu
+
+https://github.com/JakeWharton/ActionBarSherlock
