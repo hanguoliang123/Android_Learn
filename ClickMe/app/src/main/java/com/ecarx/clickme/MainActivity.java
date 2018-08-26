@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,18 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         //第二种点击监听实现方式
-        btn_click.setOnClickListener(new MyClickListener());
+//        btn_click.setOnClickListener(new MyClickListener());
+        //第三种点击监听实现方式
+        btn_click.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View v) {
+        System.out.println("我被点击了");
+        Toast.makeText(MainActivity.this,"我被点击了",Toast.LENGTH_SHORT).show();
+    }
+
+    //第二种点击监听实现方式
     class MyClickListener implements View.OnClickListener{
 
         @Override
