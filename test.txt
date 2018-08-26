@@ -5,3 +5,6 @@ SlidingMenu开源库地址:
 https://github.com/jfeinstein10/SlidingMenu
 
 https://github.com/JakeWharton/ActionBarSherlock
+
+Android-PullToRefresh
+https://github.com/chrisbanes/Android-PullToRefresh
