@@ -1,9 +1,8 @@
 package com.ecarx.clickme;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         /* 1.找到界面上的按钮 */
-        Button btn_click = (Button) findViewById(R.id.button);
+//        Button btn_click = (Button) findViewById(R.id.button);
 
         /* 点击按钮的时候触发相应点击事件 */
 /*        btn_click.setOnClickListener(new View.OnClickListener() {
@@ -30,9 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //第二种点击监听实现方式
 //        btn_click.setOnClickListener(new MyClickListener());
         //第三种点击监听实现方式
-        btn_click.setOnClickListener(this);
+//        btn_click.setOnClickListener(this);
     }
 
+    //第三种点击监听实现方式
     @Override
     public void onClick(View v) {
         System.out.println("我被点击了");
@@ -47,5 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             System.out.println("我被点击了");
             Toast.makeText(MainActivity.this,"我被点击了",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //第四种实现方式
+    public void click(View v){
+        System.out.println("我被点击了");
+        Toast.makeText(MainActivity.this,"我被点击了",Toast.LENGTH_SHORT).show();
     }
 }
