@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SmsSender</string>
+    <string name="Button_text">This is a Button.</string>
+    <string name="tv_text">textview text</string>
+</resources>
