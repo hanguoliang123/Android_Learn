@@ -1,3 +1,10 @@
 1.	Alt + shift + up/down	选中行上下移动
 2.  Ctrl + /		单行注释
 3.  Ctrl + shift + /	多行注释
+
+
+control + alt + f	转换为类的域
+alt + Enter
+shift + F6	改名字
+
+ctrl + d : 复制
