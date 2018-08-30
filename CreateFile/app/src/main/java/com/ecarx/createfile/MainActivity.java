@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 创建一个文件，这个文件可以让别的应用程序读写
+        // 当创建的文件的保存路径是当前应用程序目录下的子目录时，可以不用添加权限，
+        // 即使是6.0以上
         try {
             FileOutputStream fos = openFileOutput("readable.txt", MODE_WORLD_READABLE);
             fos.write("data".getBytes());
