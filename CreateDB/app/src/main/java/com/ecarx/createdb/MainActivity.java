@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 添加一条联系人信息
+     * 修改联系人号码
      * @param view
      */
     public void update(View view){
@@ -78,14 +78,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 添加一条联系人信息
+     * 查询一条联系人信息
      * @param view
      */
     public void query(View view){
         String name = mName.getText().toString().trim();
-        String phone = mphone.getText().toString().trim();
 
-        if(TextUtils.isEmpty(name)||TextUtils.isEmpty(phone)){
+        if(TextUtils.isEmpty(name)){
             Toast.makeText(this, "不能为空", Toast.LENGTH_SHORT).show();
             return;
         }else{
