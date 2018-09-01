@@ -7,4 +7,6 @@ control + alt + f	转换为类的域
 alt + Enter
 shift + F6	改名字
 
+ctrl + alt + L	格式化代码
+
 ctrl + d : 复制
