@@ -122,14 +122,18 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("通过缓存把图片获取出来...");
                     Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                     iv.setImageBitmap(bitmap);
+                    Message msg = Message.obtain();
+                    msg.what = 100;
+
                     Looper.prepare();
                     mHandler = new Handler(){
                         @Override
                         public void handleMessage(Message msg) {
-                            Toast.makeText(MainActivity.this, "加载成功.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "加载成功."+msg.what, Toast.LENGTH_SHORT).show();
                         }
                     };
-                    
+
+                    mHandler.sendMessage(msg);
                     Looper.loop();
                 }else{
 
