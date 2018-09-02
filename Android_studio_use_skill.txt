@@ -10,3 +10,4 @@ shift + F6	改名字
 ctrl + alt + L	格式化代码
 
 ctrl + d : 复制
+ctrl + q : 查看类或方法的注释
