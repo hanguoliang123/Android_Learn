@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        style="@style/my_text_style"
+        android:text="style"/>
+
+    <TextView
+        style="@style/my_text_style.my_text_style3"
+        android:text="style1"/>
+    <TextView
+        style="@style/my_text_style2"
+        android:text="style2"/>
+    <TextView
+        style="@style/my_text_style"
+        android:text="style3"/>
+    <TextView
+        style="@style/my_text_style"
+        android:text="style4"/>
+    <TextView
+        style="@style/my_text_style.night_mode"
+        android:text="style5"/>
+
+
+</LinearLayout>
