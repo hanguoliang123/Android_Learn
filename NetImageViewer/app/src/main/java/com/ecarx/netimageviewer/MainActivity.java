@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,9 +22,30 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int LOAD_IMAGE = 1;
+    private static final int LOAD_ERR   = 2;
     private ImageView iv;
     private ArrayList<String> paths;
-    private Handler mHandler;
+    private int currentPosition = 0;
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what){
+                case LOAD_IMAGE:
+                    Bitmap bitmap = (Bitmap) msg.obj;
+                    iv.setImageBitmap(bitmap);
+                    Toast.makeText(MainActivity.this, "图片加载成功.", Toast.LENGTH_SHORT).show();
+                    break;
+                case LOAD_ERR:
+                    Toast.makeText(MainActivity.this, "图片加载失败.", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+            return false;
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void loadAllImagePath() {
 
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
 
@@ -62,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     // 为了有一个更好的ui提醒，获取服务器的返回状态码
                     //int code = conn.getResponseCode();
 
-                    if(200==200){  // 返回成功
+                    if (200 == 200) {  // 返回成功
                         //InputStream is = conn.getInputStream();
                         //File file = new File(getCacheDir(), "info.txt");
                         //FileOutputStream fos = new FileOutputStream(file);
@@ -77,10 +97,17 @@ public class MainActivity extends AppCompatActivity {
                         beginLoadImage();
 
                         System.out.println("-------------- get ok --------------");
-                    }else if(404==2){
-                        System.out.println("-------------- get not ok --------------");
-                    }else{
-
+                    } else if (404 == 2) {
+                        Message msg = Message.obtain();
+                        msg.what = LOAD_ERR;
+                        msg.obj = "获取html文件失败,返回码:";
+                        handler.sendMessage(msg);
+                        //Toast.makeText(MainActivity.this, "获取失败.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Message msg = Message.obtain();
+                        msg.what = LOAD_ERR;
+                        msg.obj = "服务器异常";
+                        handler.sendMessage(msg);
                     }
 
                 } catch (Exception e) {
@@ -101,12 +128,12 @@ public class MainActivity extends AppCompatActivity {
             FileInputStream fis = new FileInputStream(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line;
-            while((line=br.readLine())!=null){
+            while ((line = br.readLine()) != null) {
                 paths.add(line);
             }
             fis.close();
 
-            loadImageByPath(paths.get(7));
+            loadImageByPath(paths.get(currentPosition));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,70 +141,80 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadImageByPath(final String path) {
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 final File file = new File(getCacheDir(), path.replace("/", "" + "jpg"));
-                if(file.exists()&&file.length()>0){
+                if (file.exists() && file.length() > 0) {
                     System.out.println("通过缓存把图片获取出来...");
-                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    iv.setImageBitmap(bitmap);
                     Message msg = Message.obtain();
-                    msg.what = 100;
+                    msg.what = LOAD_IMAGE;
+                    msg.obj = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    handler.sendMessage(msg);
+                } else {
 
-                    Looper.prepare();
-                    mHandler = new Handler(){
-                        @Override
-                        public void handleMessage(Message msg) {
-                            Toast.makeText(MainActivity.this, "加载成功."+msg.what, Toast.LENGTH_SHORT).show();
+                    // process incoming messages here
+                    System.out.println("通过访问网络把图片资源获取出来...");
+                    try {
+                        URL url = new URL(path);
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setRequestMethod("GET");
+                        int code = conn.getResponseCode();
+                        if (200 == code) {
+                            InputStream is = conn.getInputStream();
+                            // 内存中的图片
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            FileOutputStream fos = new FileOutputStream(file);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                            fos.close();
+                            is.close();
+
+                            Message msg = Message.obtain();
+                            msg.what = LOAD_IMAGE;
+                            msg.obj = bitmap;
+                            handler.sendMessage(msg);
+                            //iv.setImageBitmap(bitmap);
+                        } else {
+                            Message msg = Message.obtain();
+                            msg.what = LOAD_ERR;
+                            msg.obj = "获取图片失败,返回码:"+code;
+                            handler.sendMessage(msg);
+                            //Toast.makeText(MainActivity.this, "获取失败.", Toast.LENGTH_SHORT).show();
                         }
-                    };
-
-                    mHandler.sendMessage(msg);
-                    Looper.loop();
-                }else{
-
-                    Looper.prepare();
-                    mHandler = new Handler(){
-                        @Override
-                        public void handleMessage(Message msg) {
-                            // process incoming messages here
-                            System.out.println("通过访问网络把图片资源获取出来...");
-                            try {
-                                URL url = new URL(path);
-                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                                conn.setRequestMethod("GET");
-                                int code = conn.getResponseCode();
-                                if(200==code){
-                                    InputStream is = conn.getInputStream();
-                                    // 内存中的图片
-                                    Bitmap bitmap = BitmapFactory.decodeStream(is);
-                                    FileOutputStream fos = new FileOutputStream(file);
-                                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
-                                    fos.close();
-                                    is.close();
-
-                                    iv.setImageBitmap(bitmap);
-                                }else{
-                                    Toast.makeText(MainActivity.this, "获取失败.", Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    };
-
-                    Looper.loop();
+                    } catch (Exception e) {
+                        Message msg = Message.obtain();
+                        msg.what = LOAD_ERR;
+                        msg.obj = "获取图片失败";
+                        handler.sendMessage(msg);
+                        e.printStackTrace();
+                    }
                 }
+
             }
         }.start();
     }
 
-    public void pre(View view){
-        loadAllImagePath();
+    /**
+     * 上一张图片
+     * @param view
+     */
+    public void pre(View view) {
+        currentPosition--;
+        if(currentPosition<0){
+            currentPosition = paths.size()-1;
+        }
+        loadImageByPath(paths.get(currentPosition));
     }
 
-    public void next(View view){
-
+    /**
+     * 下一张图片
+     * @param view
+     */
+    public void next(View view) {
+        currentPosition++;
+        if(currentPosition>(paths.size()-1)){
+            currentPosition = 0;
+        }
+        loadImageByPath(paths.get(currentPosition));
     }
 }
