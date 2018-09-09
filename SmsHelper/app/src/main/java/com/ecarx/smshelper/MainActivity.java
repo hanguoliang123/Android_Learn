@@ -30,12 +30,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(data!=null){
-            String text = data.getStringExtra("text");
-            tv_content.setText(text);
-        }else{
-            tv_content.setText("没有选择短信");
+        if(resultCode==0){
+            if(data!=null){
+                String text = data.getStringExtra("text");
+                tv_content.setText(text);
+            }else{
+                tv_content.setText("没有选择短信");
+            }
+
         }
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 }

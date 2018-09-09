@@ -1,14 +1,14 @@
 package com.ecarx.superbrowser;
 
+import android.Manifest;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private EditText et_path;
     private ImageView iv_go;
@@ -32,8 +32,19 @@ public class MainActivity extends AppCompatActivity {
         iv_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String path = et_path.getText().toString().trim();
-                wv.loadUrl(path);
+                final String path = et_path.getText().toString().trim();
+                performCodeWithPermission("超级浏览器权限", new PermissionCallback() {
+                    @Override
+                    public void hasPermission() {
+                        wv.loadUrl(path);
+                    }
+
+                    @Override
+                    public void noPermission() {
+
+                    }
+                }, Manifest.permission.INTERNET);
+
             }
         });
     }
