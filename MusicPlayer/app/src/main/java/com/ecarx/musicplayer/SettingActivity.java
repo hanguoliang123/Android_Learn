@@ -8,9 +8,9 @@ import android.widget.RadioGroup;
 
 public class SettingActivity extends AppCompatActivity {
 
-    private static final int CYCLE = 1;
-    private static final int NEXT = 2;
-    private static final int STOP = 3;
+    public static final int CYCLE = 1;
+    public static final int NEXT = 2;
+    public static final int STOP = 3;
     private RadioGroup rg_mode;
     private SharedPreferences sp;
 

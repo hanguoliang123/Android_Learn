@@ -6,4 +6,6 @@
     <item
         android:id="@+id/item_exit"
         android:title="关闭播放器"/>
+    <item android:id="@+id/item_stop"
+          android:title="停止播放"/>
 </menu>
