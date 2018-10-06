@@ -5,6 +5,32 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <Button
+        android:onClick="alpha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="alpha "/>
+    <Button
+        android:onClick="rotate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="rotate "/>
+    <Button
+        android:onClick="scale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="scale "/>
+    <Button
+        android:onClick="trans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="trans "/>
+    <Button
+        android:onClick="set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="set "/>
+
     <ImageView
         android:id="@+id/iv"
         android:layout_width="wrap_content"
