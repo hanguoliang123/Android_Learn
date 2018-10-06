@@ -3,6 +3,8 @@ package com.ecarx.tweenanim;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -21,7 +23,8 @@ public class MainActivity2 extends AppCompatActivity {
      * @param view
      */
     public void alpha(View view){
-
+        Animation aa = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        iv.startAnimation(aa);
     }
 
     /**
@@ -29,7 +32,8 @@ public class MainActivity2 extends AppCompatActivity {
      * @param view
      */
     public void scale(View view){
-
+        Animation aa = AnimationUtils.loadAnimation(this, R.anim.scale);
+        iv.startAnimation(aa);
     }
 
     /**
@@ -37,7 +41,8 @@ public class MainActivity2 extends AppCompatActivity {
      * @param view
      */
     public void trans(View view){
-
+        Animation aa = AnimationUtils.loadAnimation(this, R.anim.trans);
+        iv.startAnimation(aa);
     }
 
     /**
@@ -45,7 +50,8 @@ public class MainActivity2 extends AppCompatActivity {
      * @param view
      */
     public void rotate(View view){
-
+        Animation aa = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        iv.startAnimation(aa);
     }
 
     /**
@@ -53,6 +59,7 @@ public class MainActivity2 extends AppCompatActivity {
      * @param view
      */
     public void set(View view){
-
+        Animation aa = AnimationUtils.loadAnimation(this, R.anim.set);
+        iv.startAnimation(aa);
     }
 }
